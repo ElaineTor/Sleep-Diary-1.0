@@ -185,15 +185,15 @@ func hideOptionalFields() {
     
     //CALCULATE TOTAL SLEEP
     func totalSleepDuration() -> String {
-        let bedtime = bedTimePicker.date// change to label
-        let waketime = wakeUpPicker.date // change to label
-        let totalSleep = waketime.timeIntervalSince(bedtime) //FIX THIS
+        let bedtime = bedTimePicker.date
+        let waketime = wakeUpPicker.date.addingTimeInterval(60*60*24)
+        let totalSleep = waketime.timeIntervalSince(bedtime)
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .positional
         formatter.allowedUnits = [.minute, .hour]
         
         let formattedDuration = formatter.string(from: totalSleep)
-        
+    
         return String(formattedDuration!)
         
     }
